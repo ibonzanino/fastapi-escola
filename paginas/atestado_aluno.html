@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Atestado de {{ aluno.nome }}{% endblock %}
+
+{% block content %}
+    <h1>Atestado de Matrícula</h1>
+
+    <h2>Dados do Aluno</h2>
+    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p><strong>Endereço:</strong> {{ aluno.rua }}, {{ aluno.numero }} - {{ aluno.bairro }}, {{ aluno.cidade }}/{{ aluno.estado }}</p>
+    <p><strong>Telefone:</strong> {{ aluno.telefone }}</p>
+
+    <h2>Disciplinas Matriculadas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Disciplina</th>
+                <th>Professor</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+                <th>Nota 4</th>
+                <th>Média Final</th>
+                <th>Situação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in matriculas %}
+            <tr>
+                <td>{{ m.disciplina_nome }}</td>
+                <td>{{ m.professor_nome or 'A definir' }}</td>
+                <td>{{ m.nota1 if m.nota1 is not none else 'N/L' }}</td>
+                <td>{{ m.nota2 if m.nota2 is not none else 'N/L' }}</td>
+                <td>{{ m.nota3 if m.nota3 is not none else 'N/L' }}</td>
+                <td>{{ m.nota4 if m.nota4 is not none else 'N/L' }}</td>
+                <td><strong>{{ m.media_final if m.media_final is not none else '---' }}</strong></td>
+                <td><strong>{{ m.resultado_final }}</strong></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8">Aluno não está matriculado em nenhuma disciplina.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

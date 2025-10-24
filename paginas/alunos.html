@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Alunos{% endblock %}
+
+{% block content %}
+    <h1>Relatório: Alunos Cadastrados</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cidade/Estado</th>
+                <th>Telefone</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno.nome }}</td>
+                <td>{{ aluno.cidade }}/{{ aluno.estado }}</td>
+                <td>{{ aluno.telefone }}</td>
+                <td>
+                    <a href="/aluno/{{ aluno.id_aluno }}/atestado" style="text-decoration: none;">Ver Atestado</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">Nenhum aluno cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

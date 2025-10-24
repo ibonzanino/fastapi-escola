@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Diário de Disciplinas{% endblock %}
+
+{% block content %}
+    <h1>Relatório: Diário de Disciplinas</h1>
+
+    {% for disciplina in relatorio %}
+        <div class="report-block">
+            <h2>{{ disciplina.nome }}</h2>
+            <p><strong>Professor:</strong> {{ disciplina.professor or 'A definir' }}</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno Matriculado</th>
+                        <th>Nota 1</th>
+                        <th>Nota 2</th>
+                        <th>Nota 3</th>
+                        <th>Nota 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for aluno in disciplina.alunos %}
+                    <tr>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.nota1 if aluno.nota1 is not none else 'N/L' }}</td>
+                        <td>{{ aluno.nota2 if aluno.nota2 is not none else 'N/L' }}</td>
+                        <td>{{ aluno.nota3 if aluno.nota3 is not none else 'N/L' }}</td>
+                        <td>{{ aluno.nota4 if aluno.nota4 is not none else 'N/L' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">Nenhum aluno matriculado nesta disciplina.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>Nenhuma disciplina encontrada.</p>
+    {% endfor %}
+{% endblock %}

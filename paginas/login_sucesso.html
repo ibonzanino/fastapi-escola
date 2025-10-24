@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Bem-vindo ao Sistema de Gestão Acadêmica, {{ usuario }}!</h1>
+    <p>Use o menu de navegação acima para acessar os relatórios do sistema.</p>
+
+    <h2>Relatórios Disponíveis:</h2>
+    <ul>
+        <li>
+            <strong><a href="/alunos">Listagem de Alunos</a></strong>
+            <p>Mostra todos os alunos cadastrados. A partir desta tela, você pode emitir o atestado de matrícula individual.</p>
+        </li>
+        <li>
+            <strong><a href="/professores">Listagem de Professores</a></strong>
+            <p>Mostra todos os professores cadastrados.</p>
+        </li>
+        <li>
+            <strong><a href="/disciplinas/relatorio">Diário de Disciplinas</a></strong>
+            <p>Mostra todas as disciplinas, seus professores e os alunos matriculados com suas respectivas notas.</p>
+        </li>
+         <li>
+            <strong><a href="/detalhar">Detalhes do Usuário</a></strong>
+            <p>Página de exemplo que você criou.</p>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Professores{% endblock %}
+
+{% block content %}
+    <h1>Relatório: Professores Cadastrados</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Cidade/Estado</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prof in professores %}
+            <tr>
+                <td>{{ prof.nome }}</td>
+                <td>{{ prof.cidade }}/{{ prof.estado }}</td>
+                <td>{{ prof.telefone }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">Nenhum professor cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
